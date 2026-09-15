@@ -23,11 +23,12 @@
 
   header.site{background:var(--forest); border-bottom:1px solid rgba(255,255,255,0.08);}
   .nav{max-width:1000px; margin:0 auto; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px;}
-  .brand{display:flex; align-items:center; gap:12px; text-decoration:none; color:#fff;}
-  .brand img{width:42px; height:42px; object-fit:contain;}
+  .brand{display:flex; align-items:center; gap:14px; text-decoration:none; color:#fff;}
+  .brand img{width:72px; height:72px; object-fit:contain;}
   .brand-text{display:flex; flex-direction:column; line-height:1.15;}
-  .brand-text strong{font-family:'Fraunces',serif; font-size:1rem;}
-  .brand-text span{font-size:0.66rem; letter-spacing:0.04em; color:var(--gold-bright);}
+  .brand-text strong{font-family:'Fraunces',serif; font-size:1.1rem;}
+  .brand-text span{font-size:0.72rem; letter-spacing:0.04em; color:var(--gold-bright);}
+  @media (max-width:640px){ .brand img{width:50px; height:50px;} }
   .back-link{color:#eee7d6; text-decoration:none; font-size:0.9rem; font-weight:500;}
   .back-link:hover{color:var(--gold-bright);}
 
@@ -66,22 +67,42 @@
 
   /* ---- dashboard ---- */
   #dashboard{display:none;}
-  .dash-head{
-    display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px;
-    margin-bottom:28px; padding-bottom:22px; border-bottom:2px solid var(--forest);
+  .dash-layout{display:flex; gap:0; align-items:flex-start;}
+  .dash-sidebar{
+    width:230px; flex:none; background:var(--forest-deep); color:#e4ecf6; border-radius:6px;
+    padding:26px 20px; margin-right:24px;
   }
-  .dash-head h1{font-size:1.9rem; margin-bottom:0.1em;}
-  .dash-head .meta{color:#6d6857; font-size:0.95rem;}
+  .dash-profile{padding-bottom:20px; margin-bottom:16px; border-bottom:1px solid rgba(255,255,255,0.12);}
+  .dash-profile .name{font-family:'Fraunces',serif; font-weight:700; color:#fff; font-size:1.05rem;}
+  .dash-profile .meta{font-size:0.82rem; color:#b9c3d6; margin-top:3px;}
+  .dash-nav{list-style:none; margin:0; padding:0;}
+  .dash-nav li{margin-bottom:4px;}
+  .dash-nav button{
+    width:100%; text-align:left; background:none; border:none; color:#cfd8e6; padding:10px 12px;
+    border-radius:5px; font-size:0.9rem; cursor:pointer; font-family:inherit;
+  }
+  .dash-nav button:hover{background:rgba(255,255,255,0.06);}
+  .dash-nav button.active{background:var(--forest); color:#fff; font-weight:600;}
   .logout-btn{
-    background:none; border:1.5px solid var(--forest); color:var(--forest); padding:9px 18px;
-    border-radius:3px; font-weight:600; font-size:0.88rem; cursor:pointer;
+    width:100%; margin-top:18px; background:none; border:1.5px solid rgba(224,180,82,0.4); color:var(--gold-bright);
+    padding:9px 12px; border-radius:5px; font-weight:600; font-size:0.85rem; cursor:pointer; text-align:left;
   }
-  .logout-btn:hover{background:var(--forest); color:#fff;}
+  .logout-btn:hover{background:rgba(224,180,82,0.12);}
 
-  .summary-cards{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:34px;}
+  .dash-main{flex:1; min-width:0;}
+  .dash-head{margin-bottom:22px; padding-bottom:16px; border-bottom:2px solid var(--forest);}
+  .dash-head h1{font-size:1.6rem; margin-bottom:0.1em;}
+  .dash-head .meta{color:#6d6857; font-size:0.95rem;}
+  .dash-panel{display:none;}
+  .dash-panel.active{display:block;}
+
+  .summary-cards{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:28px;}
   .s-card{background:#fff; border:1px solid var(--line); border-radius:4px; padding:18px 20px;}
   .s-card .num{font-family:'Fraunces',serif; font-size:1.5rem; color:var(--forest); font-weight:700; line-height:1.2;}
   .s-card .lbl{font-size:0.84rem; color:#6d6857;}
+
+  .panel-card{background:#fff; border:1px solid var(--line); border-radius:4px; padding:22px 24px; margin-bottom:18px;}
+  .panel-card h3{font-size:1.05rem; margin-bottom:12px;}
 
   table{width:100%; border-collapse:collapse; background:#fff; border:1px solid var(--line); border-radius:4px; overflow:hidden;}
   thead th{
@@ -94,6 +115,32 @@
     display:inline-block; padding:3px 11px; border-radius:20px; color:#fff; font-size:0.82rem; font-weight:600;
   }
   .note{margin-top:26px; font-size:0.85rem; color:#7a7460; font-style:italic;}
+  .secured-note{margin-top:14px; font-size:0.8rem; color:#7a7460; text-align:right;}
+
+  .notice-row{display:flex; gap:14px; padding:12px 0; border-bottom:1px solid var(--line);}
+  .notice-row:last-child{border-bottom:none;}
+  .notice-date{
+    flex:none; width:58px; text-align:center; background:var(--parchment); border-radius:5px;
+    padding:6px 2px; font-size:0.72rem; font-weight:700; color:var(--forest);
+  }
+  .notice-title{font-size:0.94rem; font-weight:600; color:var(--ink);}
+  .notice-desc{font-size:0.86rem; color:#6d6857; margin-top:2px;}
+
+  .tt-table{min-width:560px;}
+  .tt-scroll{overflow-x:auto;}
+  .tt-table th{font-size:0.72rem;}
+  .tt-table td{text-align:center; font-size:0.82rem; padding:10px 8px;}
+  .tt-table td.tt-label{background:var(--parchment); font-weight:700; color:var(--forest); text-align:left; white-space:nowrap;}
+
+  @media (max-width:760px){
+    .dash-layout{flex-direction:column;}
+    .dash-sidebar{width:100%; margin-right:0; margin-bottom:18px; display:flex; flex-direction:column; gap:12px; padding:16px 18px;}
+    .dash-profile{padding-bottom:0; margin-bottom:0; border-bottom:none;}
+    .dash-nav{display:flex; gap:8px; overflow-x:auto; padding-bottom:2px;}
+    .dash-nav li{margin-bottom:0; flex:none;}
+    .dash-nav button{white-space:nowrap; padding:8px 14px; border:1px solid rgba(255,255,255,0.14); border-radius:20px;}
+    .logout-btn{margin-top:0; width:auto; white-space:nowrap;}
+  }
 
   @media (max-width:640px){
     .summary-cards{grid-template-columns:1fr 1fr;}
@@ -135,31 +182,116 @@
           <div class="demo-row"><span>Admission no.</span><span><code>LT2027001</code></span></div>
           <div class="demo-row"><span>Surname</span><span><code>Mokoena</code></span></div>
         </div>
+        <p style="margin-top:16px; font-size:0.78rem; color:#9a927a; text-align:center;">🔒 Portal secured by Moana Technologies</p>
       </div>
     </div>
 
     <div id="dashboard">
-      <div class="dash-head">
-        <div>
-          <h1 id="dName">—</h1>
-          <div class="meta" id="dMeta">—</div>
-        </div>
-        <button class="logout-btn" id="logoutBtn">Log out</button>
-      </div>
+      <div class="dash-layout">
+        <aside class="dash-sidebar">
+          <div class="dash-profile">
+            <div class="name" id="dName">—</div>
+            <div class="meta" id="dMeta">—</div>
+          </div>
+          <ul class="dash-nav">
+            <li><button class="active" onclick="switchTab('overviewTab', this)">Overview</button></li>
+            <li><button onclick="switchTab('marksTab', this)">Term Marks &amp; Reports</button></li>
+            <li><button onclick="switchTab('timetableTab', this)">Class Timetable</button></li>
+            <li><button onclick="switchTab('noticesTab', this)">School Notices</button></li>
+            <li><button onclick="switchTab('attendanceTab', this)">Attendance</button></li>
+          </ul>
+          <button class="logout-btn" id="logoutBtn">Log out</button>
+        </aside>
 
-      <div class="summary-cards">
-        <div class="s-card"><div class="num" id="dAvg">—</div><div class="lbl">Average mark</div></div>
-        <div class="s-card"><div class="num" id="dBest">—</div><div class="lbl">Best subject</div></div>
-        <div class="s-card"><div class="num" id="dCount">—</div><div class="lbl">Subjects recorded</div></div>
-      </div>
+        <main class="dash-main">
+          <div id="overviewTab" class="dash-panel active">
+            <div class="dash-head">
+              <h1>Welcome back</h1>
+              <div class="meta">Here's a quick snapshot of the current term.</div>
+            </div>
+            <div class="summary-cards">
+              <div class="s-card"><div class="num" id="dAvg">—</div><div class="lbl">Average mark</div></div>
+              <div class="s-card"><div class="num" id="dBest">—</div><div class="lbl">Best subject</div></div>
+              <div class="s-card"><div class="num" id="dCount">—</div><div class="lbl">Subjects recorded</div></div>
+            </div>
+            <div class="panel-card">
+              <h3>Recent notices</h3>
+              <div id="overviewNotices"></div>
+            </div>
+          </div>
 
-      <table>
-        <thead>
-          <tr><th>Subject</th><th>Mark</th><th>NSC level</th><th>Description</th></tr>
-        </thead>
-        <tbody id="dRows"></tbody>
-      </table>
-      <p class="note">Results shown are for the term indicated above and follow the National Senior Certificate seven-point achievement scale.</p>
+          <div id="marksTab" class="dash-panel">
+            <div class="dash-head">
+              <h1>Term Marks &amp; Reports</h1>
+              <div class="meta" id="dMetaMarks">—</div>
+            </div>
+            <table>
+              <thead>
+                <tr><th>Subject</th><th>Mark</th><th>NSC level</th><th>Description</th></tr>
+              </thead>
+              <tbody id="dRows"></tbody>
+            </table>
+            <p class="note">Results shown are for the term indicated above and follow the National Senior Certificate seven-point achievement scale.</p>
+            <p class="secured-note">🔒 Results secured by Moana Technologies</p>
+          </div>
+
+          <div id="timetableTab" class="dash-panel">
+            <div class="dash-head">
+              <h1>Weekly Class Timetable</h1>
+              <div class="meta">Your regular schedule of periods for the week.</div>
+            </div>
+            <div class="panel-card">
+              <div class="tt-scroll">
+                <table class="tt-table">
+                  <thead>
+                    <tr><th>Period</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="tt-label">P1 08:00–08:50</td><td>English</td><td>Mathematics</td><td>isiZulu HL</td><td>Mathematics</td><td>Natural Sciences</td>
+                    </tr>
+                    <tr>
+                      <td class="tt-label">P2 08:50–09:40</td><td>Mathematics</td><td>English</td><td>Natural Sciences</td><td>isiZulu HL</td><td>Life Orientation</td>
+                    </tr>
+                    <tr><td class="tt-label" colspan="6" style="text-align:center; background:var(--parchment); font-style:italic; font-weight:400;">Break (09:40–10:10)</td></tr>
+                    <tr>
+                      <td class="tt-label">P3 10:10–11:00</td><td>isiZulu HL</td><td>Social Sciences</td><td>Mathematics</td><td>Social Sciences</td><td>English</td>
+                    </tr>
+                    <tr>
+                      <td class="tt-label">P4 11:00–11:50</td><td>Life Orientation</td><td>Natural Sciences</td><td>English</td><td>Technology</td><td>Mathematics</td>
+                    </tr>
+                    <tr><td class="tt-label" colspan="6" style="text-align:center; background:var(--parchment); font-style:italic; font-weight:400;">Lunch (11:50–12:30)</td></tr>
+                    <tr>
+                      <td class="tt-label">P5 12:30–13:20</td><td>Social Sciences</td><td>Creative Arts</td><td>Social Sciences</td><td>Physical Education</td><td>Assembly</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div id="noticesTab" class="dash-panel">
+            <div class="dash-head">
+              <h1>School Notices &amp; Circulars</h1>
+              <div class="meta">Official communication from school management.</div>
+            </div>
+            <div class="panel-card" id="noticesFull"></div>
+          </div>
+
+          <div id="attendanceTab" class="dash-panel">
+            <div class="dash-head">
+              <h1>Attendance</h1>
+              <div class="meta">Your attendance record for the current term.</div>
+            </div>
+            <div class="summary-cards">
+              <div class="s-card"><div class="num" id="dAttendance">—</div><div class="lbl">Attendance rate</div></div>
+              <div class="s-card"><div class="num" id="dDaysPresent">—</div><div class="lbl">Days present</div></div>
+              <div class="s-card"><div class="num" id="dDaysAbsent">—</div><div class="lbl">Days absent</div></div>
+            </div>
+            <p class="note">Attendance is tracked per school day and reset at the start of each term.</p>
+          </div>
+        </main>
+      </div>
     </div>
 
   </div>
@@ -170,6 +302,7 @@
   var LEARNERS = {
     "LT2027001|MOKOENA": {
       name: "Thabo Mokoena", grade: "Grade 12", term: "Term 2, 2026",
+      daysPresent: 56, daysAbsent: 2,
       subjects: [
         ["English Home Language", 74],
         ["isiZulu Home Language", 81],
@@ -182,6 +315,7 @@
     },
     "LT2027045|ZULU": {
       name: "Nokuthula Zulu", grade: "Grade 10", term: "Term 2, 2026",
+      daysPresent: 54, daysAbsent: 4,
       subjects: [
         ["English First Additional Language", 68],
         ["isiZulu Home Language", 77],
@@ -194,6 +328,7 @@
     },
     "LT2027102|NDLOVU": {
       name: "Sipho Ndlovu", grade: "Grade 8", term: "Term 2, 2026",
+      daysPresent: 51, daysAbsent: 7,
       subjects: [
         ["English First Additional Language", 59],
         ["isiZulu Home Language", 70],
@@ -214,6 +349,29 @@
     if (mark >= 40) return {level:3, desc:"Moderate", color:"var(--level3)"};
     if (mark >= 30) return {level:2, desc:"Elementary", color:"var(--level2)"};
     return {level:1, desc:"Not achieved", color:"var(--level1)"};
+  }
+
+  var NOTICES = [
+    {date:"12 Jun", title:"Principal's Stake soccer final", desc:"Kick-off 14:00 on the school field. Learners, staff and community members are welcome to attend."},
+    {date:"05 Jun", title:"Grade 8 Admissions 2027 reminder", desc:"Application forms are available from the office. Closing date is 21 August 2026."},
+    {date:"28 May", title:"Staff wellness day", desc:"Teaching staff will be at a wellness day event; classes will run on the standard timetable with relief supervision."},
+    {date:"14 May", title:"Term 2 Top 10 assembly", desc:"Grade 12's top ten achievers for the term will be recognised in front of the whole school."}
+  ];
+
+  function renderNotices(targetId, limit){
+    var el = document.getElementById(targetId);
+    if(!el) return;
+    var list = limit ? NOTICES.slice(0, limit) : NOTICES;
+    el.innerHTML = list.map(function(n){
+      return '<div class="notice-row"><div class="notice-date">' + n.date + '</div><div><div class="notice-title">' + n.title + '</div><div class="notice-desc">' + n.desc + '</div></div></div>';
+    }).join('');
+  }
+
+  function switchTab(tabId, btnEl){
+    document.querySelectorAll('.dash-panel').forEach(function(p){ p.classList.remove('active'); });
+    document.querySelectorAll('.dash-nav button').forEach(function(b){ b.classList.remove('active'); });
+    document.getElementById(tabId).classList.add('active');
+    btnEl.classList.add('active');
   }
 
   var form = document.getElementById('loginForm');
@@ -265,6 +423,22 @@
     document.getElementById('dAvg').textContent = Math.round(total / rec.subjects.length) + '%';
     document.getElementById('dBest').textContent = best[0];
     document.getElementById('dCount').textContent = rec.subjects.length;
+
+    document.getElementById('dMetaMarks').textContent = rec.grade + " · " + rec.term;
+
+    var totalDays = rec.daysPresent + rec.daysAbsent;
+    var rate = Math.round((rec.daysPresent / totalDays) * 100);
+    document.getElementById('dAttendance').textContent = rate + '%';
+    document.getElementById('dDaysPresent').textContent = rec.daysPresent;
+    document.getElementById('dDaysAbsent').textContent = rec.daysAbsent;
+
+    renderNotices('overviewNotices', 2);
+    renderNotices('noticesFull', null);
+
+    document.querySelectorAll('.dash-panel').forEach(function(p){ p.classList.remove('active'); });
+    document.getElementById('overviewTab').classList.add('active');
+    document.querySelectorAll('.dash-nav button').forEach(function(b){ b.classList.remove('active'); });
+    document.querySelector('.dash-nav button').classList.add('active');
   }
 </script>
 </body>
